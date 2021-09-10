@@ -89,12 +89,12 @@ def fix_key(key):
 
 def main():
 
-    # pdfs: list[Path] = Path('.').glob("VypL*2017_1[0-2].pdf")
+    pdfs: list[Path] = Path('./DATA').glob("VypL*2017_1[0-2].pdf")
 
     # pdfs: list[Path] = [obj for obj in Path('.').glob("VypL*20*_[0][0-9].pdf")]
     # pdfs.extend([obj for obj in Path('.').glob("VypL*20*_10*.pdf")])
 
-    pdfs: list[Path] = [obj for obj in Path('.').glob("VypL*20*.pdf")]
+    # pdfs: list[Path] = [obj for obj in Path('.').glob("VypL*20*.pdf")]
 
     files: list[str] = sorted([pdf.name for pdf in pdfs])
 
@@ -113,7 +113,7 @@ def main():
         doc: typing.Optional[Document] = None
         l:SimpleTextExtraction = SimpleTextExtraction()
 
-        with open(pdf, "rb") as in_file_handle:
+        with open(f"./DATA/{pdf}", "rb") as in_file_handle:
             doc = PDF.loads(in_file_handle, [l])
 
         assert doc is not None
