@@ -120,17 +120,17 @@ def main():
         lines = l.get_text_for_page(0).split("\n")
 
         mesic = '_'.join(pdf.split('_')[1:3]).replace(".pdf", "")
-        hruba_mzda = ""
-        odmeny = ""
-        cista_mzda = ""
-        bezhotovost = ""
+        # hruba_mzda = ""
+        # odmeny = ""
+        # cista_mzda = ""
+        # bezhotovost = ""
 
         dc = {}
 
         for line in lines:
             key = " ".join([item for item in line.split() if not has_numbers(item) and item != ":"])
-            key = fix_key(key)
             value = " ".join([item for item in line.split() if has_numbers(item) and item != ":"])
+            key = fix_key(key)
             dc[key] = value
 
         # pprint(dc)
@@ -150,7 +150,7 @@ def main():
         prescasy = {key: value for key, value in dc.items() if "přesčas" in key}
         if len(prescasy) != 0:
             for key, value in prescasy.items():
-                print(f'bez_odmen [{bez_odmen}] - value [{value.split()[-1]}] = {int(bez_odmen) - int(value.split()[-1])}')
+                # print(f'bez_odmen [{bez_odmen}] - value [{value.split()[-1]}] = {int(bez_odmen) - int(value.split()[-1])}')
                 bez_odmen = str(int(bez_odmen) - int(value.split()[-1]))
 
 
