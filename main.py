@@ -9,6 +9,7 @@ from borb.pdf.pdf import PDF
 from borb.toolkit.text.simple_text_extraction import SimpleTextExtraction
 from tqdm import tqdm
 from pprint import pprint
+from collections import OrderedDict
 
 import plotille
 import numpy as np
@@ -125,7 +126,7 @@ def main():
         # cista_mzda = ""
         # bezhotovost = ""
 
-        dc = {}
+        dc = OrderedDict()
 
         for line in lines:
             key = " ".join([item for item in line.split() if not has_numbers(item) and item != ":"])
@@ -156,6 +157,8 @@ def main():
 
         # Fill table row
         table.append([mesic, hruba_mzda, odmeny, bez_odmen, cista_mzda, bezhotovost])
+
+    pprint(dc.keys())
 
     # Print table
     print(tabulate(table, headers=headers, tablefmt="psql"))
